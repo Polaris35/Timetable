@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>qml/LoginForm/LoginForm.qml</file>
+        <file>qml/LoginForm/qmldir</file>
+        <file>qml/GlobalSettings/GlobalSettings.qml</file>
+        <file>qml/GlobalSettings/qmldir</file>
+        <file>qml/fonts/ConcertOne-Regular.ttf</file>
+    </qresource>
+</RCC>
