@@ -6,8 +6,15 @@ import QtQuick.Layouts 1.12
 import GlobalSettings 1.0
 import LoginForm 1.0
 
-LoginForm {
+
+ApplicationWindow{
+    visible: true
+    width: 480
+    height: 640
+    FontLoader { id: cullFont; source: "qrc:/fonts/ConcertOne-Regular.ttf" }
+    Material.theme: Material.Dark
+    Material.accent: "White"
+
 
 }
-
 

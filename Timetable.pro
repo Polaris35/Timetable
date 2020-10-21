@@ -1,5 +1,5 @@
 QT += quick
-
+QT += sql
 QT += qml quick quickcontrols2
 
 CONFIG += c++17
@@ -18,7 +18,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp
 
-RESOURCES += qml.qrc
+RESOURCES += \
+    qml.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH += $$PWD/qml
@@ -36,5 +37,13 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     qtquickcontrols2.conf
+
+HEADERS += \
+    include/dbconnectionmanager.h \
+    include/dbmanager.h \
+    include/dbmanipulator.h \
+    include/dbprocessing.h \
+    include/dbselector.h \
+    include/dbtypes.h
 
 

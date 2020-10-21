@@ -7,28 +7,28 @@ USE Timetable;
 
 CREATE TABLE Discipline
 (
-    id INT AUTO_INCREMENT,
+    id INT AUTOINCREMENT,
     name VARCHAR(50),
     PRIMARY KEY (id)
 );
 
 CREATE TABLE Teacher
 (
-    id INT AUTO_INCREMENT,
+    id INT AUTOINCREMENT,
     PIB VARCHAR(32),
     PRIMARY KEY (id)
 );
 
 CREATE TABLE Day
 (
-    id INT AUTO_INCREMENT,
+    id INT AUTOINCREMENT,
     name VARCHAR(15),
     PRIMARY KEY (id)
 );
 
 CREATE TABLE Reading
 (
-    id INT AUTO_INCREMENT,
+    id INT AUTOINCREMENT,
     id_group INT NOT NULL,
     id_teacher INT NOT NULL,
     PRIMARY KEY(id)
@@ -36,7 +36,7 @@ CREATE TABLE Reading
 
 CREATE TABLE Groups
 (
-    id INT AUTO_INCREMENT,
+    id INT AUTOINCREMENT,
     name VARCHAR(30),
     cipher VARCHAR(15),
     course VARCHAR(10),
@@ -45,7 +45,7 @@ CREATE TABLE Groups
 
 CREATE TABLE Timetable
 (
-    id INT AUTO_INCREMENT,
+    id INT AUTOINCREMENT,
     id_reading INT,
     id_day INT,
     PRIMARY KEY (id)

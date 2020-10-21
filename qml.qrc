@@ -6,5 +6,9 @@
         <file>qml/GlobalSettings/GlobalSettings.qml</file>
         <file>qml/GlobalSettings/qmldir</file>
         <file>qml/fonts/ConcertOne-Regular.ttf</file>
+        <file>qml/Cell/Cell.qml</file>
+        <file>qml/Cell/qmldir</file>
+        <file>qml/GroupSchedule/GroupSchedule.qml</file>
+        <file>qml/GroupSchedule/qmldir</file>
     </qresource>
 </RCC>

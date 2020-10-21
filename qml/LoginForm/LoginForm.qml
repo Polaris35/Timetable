@@ -4,15 +4,8 @@ import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
 import QtQuick.Layouts 1.12
 
-ApplicationWindow {
+Item {
     id:root
-    visible: true
-    width: 480
-    height: 640
-    FontLoader { id: cullFont; source: "qrc:/fonts/ConcertOne-Regular.ttf" }
-    Material.theme: Material.Dark
-    Material.accent: Material.Cyan
-
     ColumnLayout{
         spacing: 40
         anchors.centerIn: parent
@@ -31,12 +24,16 @@ ApplicationWindow {
             id: pass
             Layout.alignment: Qt.AlignHCenter
             placeholderText: "Password"
-
         }
         Button{
-
             text: "submit"
             Layout.alignment: Qt.AlignHCenter
+            onClicked: {
+                if(login.text == "")
+                    login.placeholderTextColor = Material.color(Material.Red);
+                if(pass.text == "")
+                    pass.placeholderTextColor = Material.color(Material.Red);
+            }
         }
     }
 }
