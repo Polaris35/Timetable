@@ -10,10 +10,10 @@ Rectangle{
     width:200
     height:76
 
-    anchors.centerIn: parent
+    //anchors.centerIn: parent
 
     color: Material.backgroundColor
-    border.width: 0
+    border.width: 1
     border.color: Material.accent
 
     RowLayout{
@@ -52,7 +52,7 @@ Rectangle{
             }
         }
         ColumnLayout{
-            spacing: 0
+            spacing: -1
             Rectangle
             {
                 id:box_au1
@@ -64,8 +64,8 @@ Rectangle{
                     color: Material.accent
                     anchors.centerIn: parent
                 }
-                height: main.height / 2
-                width: main.width / 5
+                height: main.height / 2 + 1
+                width: main.width / 5 + 1
                 color: Material.backgroundColor
             }
             Rectangle
@@ -80,7 +80,7 @@ Rectangle{
                     anchors.centerIn: parent
                 }
                 height: main.height / 2
-                width: main.width / 5
+                width: main.width / 5 + 1
                 color: Material.backgroundColor
 
             }

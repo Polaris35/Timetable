@@ -10,5 +10,7 @@
         <file>qml/Cell/qmldir</file>
         <file>qml/GroupSchedule/GroupSchedule.qml</file>
         <file>qml/GroupSchedule/qmldir</file>
+        <file>qml/GridSchedule/GridSchedule.qml</file>
+        <file>qml/GridSchedule/qmldir</file>
     </qresource>
 </RCC>
