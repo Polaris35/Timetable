@@ -3,14 +3,16 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
 import QtQuick.Layouts 1.12
-import RegisterForm 1.0
-Item {
-    id:root    
+import QtQuick.Dialogs 1.1
+
+Item{
+    id: root
+    anchors.fill: parent
     ColumnLayout{
         spacing: 40
         anchors.centerIn: parent
         Label{
-            text: "Login Form"
+            text: "Registration Form"
             Layout.alignment: Qt.AlignHCenter
             font.family: cullFont.name
             font.pixelSize: 40
@@ -25,25 +27,29 @@ Item {
             Layout.alignment: Qt.AlignHCenter
             placeholderText: "Password"
         }
+        TextField{
+            id: pass_confirm
+            Layout.alignment: Qt.AlignHCenter
+            placeholderText: "Confirm password"
+        }
         Button{
             text: "submit"
             Layout.alignment: Qt.AlignHCenter
             onClicked: {
                 if(login.text == "")
                     login.placeholderTextColor = Material.color(Material.Red);
-                if(pass.text == "")
+                if(pass.text == ""){
                     pass.placeholderTextColor = Material.color(Material.Red);
-            }
-        }
-        Button{
-            text: "Registration"
-            Layout.alignment: Qt.AlignHCenter
-            onClicked: {
+//                    return;
+                }
+                if(pass_confirm.text == ""){
+                    pass_confirm.placeholderTextColor = Material.color(Material.Red);
+//                    return;
+                }
+//                if(pass.text != pass_confirm.text)
 
             }
         }
+
     }
-
-
 }
-

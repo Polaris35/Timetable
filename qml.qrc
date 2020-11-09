@@ -12,5 +12,9 @@
         <file>qml/GroupSchedule/qmldir</file>
         <file>qml/GridSchedule/GridSchedule.qml</file>
         <file>qml/GridSchedule/qmldir</file>
+        <file>qml/RegisterForm/qmldir</file>
+        <file>qml/RegisterForm/RegisterForm.qml</file>
+        <file>qml/MainForm/MainForm.qml</file>
+        <file>qml/MainForm/qmldir</file>
     </qresource>
 </RCC>

@@ -16,7 +16,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        main.cpp
+        itemslist.cpp \
+        main.cpp \
+    readingmodel.cpp \
+        treemodel.cpp \
 
 RESOURCES += \
     qml.qrc
@@ -39,11 +42,8 @@ DISTFILES += \
     qtquickcontrols2.conf
 
 HEADERS += \
-    include/dbconnectionmanager.h \
-    include/dbmanager.h \
-    include/dbmanipulator.h \
-    include/dbprocessing.h \
-    include/dbselector.h \
-    include/dbtypes.h
+    itemslist.h \
+    readingmodel.h \
+    treemodel.h \
 
 

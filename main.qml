@@ -5,42 +5,30 @@ import QtQuick.Controls.Material 2.12
 import QtQuick.Layouts 1.12
 import GlobalSettings 1.0
 import LoginForm 1.0
+import Cell 1.0
 import GroupSchedule 1.0
+import RegisterForm 1.0
+import MainForm 1.0
+import GridSchedule 1.0
 
-
-ApplicationWindow{
+ApplicationWindow {
     visible: true
-    width: 480
-    height: 640
     FontLoader { id: cullFont; source: "qrc:/fonts/ConcertOne-Regular.ttf" }
+    width: 1640
+    height: 880
+    color: '#222222'
     Material.theme: Material.Dark
     Material.accent: "White"
-    ListView{
-        //anchors.centerIn: parent
-        anchors.top: parent.top
-        anchors.left: parent.left
-        orientation: ListView.Horizontal
-        anchors.margins: 20
-        model:list
-        delegate: GroupSchedule{}
-        ListModel{
-            id:list
-            ListElement{
-                GroupName: "P-419"
-            }
-        }
+    //    MainForm{
+    //        anchors.fill: parent
+    //    }
+
+    GroupSchedule{
+        id: grid
 
     }
-//    GridSchedule {
-
-//    }
-
-
-
-
 
 
 
 
 }
-

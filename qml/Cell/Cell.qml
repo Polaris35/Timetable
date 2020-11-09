@@ -7,9 +7,10 @@ import QtQuick.Layouts 1.12
 
 Rectangle{
     id: main
-    width:200
-    height:76
-
+    implicitHeight: 76
+    implicitWidth: 200
+    property string teacher
+    property string lesson
     //anchors.centerIn: parent
 
     color: Material.backgroundColor
@@ -18,18 +19,19 @@ Rectangle{
 
     RowLayout{
         spacing: -1
-
-        Rectangle{
+        anchors.fill: parent
+        Rectangle {
             width: main.width - main.width / 5
             height: main.height
             color: Material.backgroundColor
             border.width: 1
             border.color: Material.accent
-
+            Layout.fillWidth: true
+            Layout.fillHeight: true
             Text {
                 id: subject
                 width: main.width - main.width / 5
-                text: model.subject
+                text: lesson
                 font.pixelSize: 11
                 color: Material.accent
                 smooth: true
@@ -40,11 +42,12 @@ Rectangle{
                 anchors.topMargin: 5
             }
             Text {
-                text: model.teacher
+                text: teacher
                 font.pixelSize: 9
                 anchors.top: subject.bottom
                 color: Material.accent
                 anchors.topMargin: 10
+                smooth: true
                 width: main.width - main.width / 5
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: TextEdit.AlignHCenter
@@ -52,6 +55,8 @@ Rectangle{
             }
         }
         ColumnLayout{
+            Layout.fillWidth: true
+            Layout.fillHeight: true
             spacing: -1
             Rectangle
             {
@@ -59,7 +64,7 @@ Rectangle{
                 border.color: Material.accent
                 border.width: 1
                 Text {
-                    text: model.first_au
+                    text: " "
                     //anchors.fill: parent
                     color: Material.accent
                     anchors.centerIn: parent
@@ -74,7 +79,7 @@ Rectangle{
                 border.color: Material.accent
                 border.width: 1
                 Text {
-                    text: model.second_au
+                    text: " "
                     //anchors.fill: parent
                     color: Material.accent
                     anchors.centerIn: parent
