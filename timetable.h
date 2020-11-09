@@ -3,6 +3,7 @@
 
 #include <QObject>
 
+class QSqlDatabase;
 class ReadingModel;
 class TreeModel;
 class TimeTable : public QObject
@@ -14,6 +15,8 @@ public:
     void setReadingModel(ReadingModel *readingModel);
 
     void setTreeModel(TreeModel *treeModel);
+
+    void setDb(QSqlDatabase *db);
 
 private slots:
     void lessonsSwapChoosed(int idx);
@@ -29,6 +32,8 @@ private:
 
     QPair<int,int> m_toSwap;
     int m_fromSwap;
+
+    QSqlDatabase *m_db;
 };
 
 #endif // TIMETABLE_H

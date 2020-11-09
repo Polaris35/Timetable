@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
     TimeTable timeTable;
     timeTable.setReadingModel(&readingModel);
     timeTable.setTreeModel(&model);
+    timeTable.setDb(&db);
 
     QQmlApplicationEngine engine;
     engine.addImportPath(":/qml");

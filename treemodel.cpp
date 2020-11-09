@@ -138,3 +138,8 @@ QVariant TreeModel::headerData(int section, Qt::Orientation orientation, int rol
     }
 
 }
+
+QStringList TreeModel::headers() const
+{
+    return m_headers;
+}

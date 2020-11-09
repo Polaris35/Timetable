@@ -39,6 +39,7 @@ private:
     // QAbstractItemModel interface
 public:
     bool setData(const QModelIndex &index, const QVariant &value, int role) override;
+    QStringList headers() const;
 };
 
 #endif // TREEMODEL_H
