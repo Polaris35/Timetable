@@ -23,17 +23,19 @@ int main(int argc, char *argv[])
     if (!db.open())
         qDebug() << db.lastError().text();
 
-    //qmlRegisterType<TreeModel>("TreeModel",1,0,"TreeModel");
+//    qmlRegisterType<TreeModel>("TreeModel",1,0,"TreeModel");
     fontDB.addApplicationFont("qrc:/qml/fonts/ConcertOne-Regular.ttf");
     app.setFont(QFont(QStringLiteral("ConcertOne-Regular")));
     QQuickStyle::setStyle("Material");
+
     TreeModel model(&db);
-    //ReadingModel readingModel(&db);
+    ReadingModel readingModel(&db);
+
     QQmlApplicationEngine engine;
     engine.addImportPath(":/qml");
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     engine.rootContext()->setContextProperty("tableModel", &model);
-    //engine.rootContext()->setContextProperty("readingModel", &readingModel);
+    engine.rootContext()->setContextProperty("readingModel", &readingModel);
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
         if (!obj && url == objUrl)

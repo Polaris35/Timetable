@@ -13,22 +13,17 @@ import GridSchedule 1.0
 
 ApplicationWindow {
     visible: true
-    FontLoader { id: cullFont; source: "qrc:/fonts/ConcertOne-Regular.ttf" }
     width: 1640
     height: 880
     color: '#222222'
     Material.theme: Material.Dark
     Material.accent: "White"
-    //    MainForm{
-    //        anchors.fill: parent
-    //    }
+        MainForm{
+            anchors.fill: parent
+        }
 
-    GroupSchedule{
-        id: grid
-
-    }
-
-
-
+//    GroupSchedule{
+//        id: grid
+//    }
 
 }

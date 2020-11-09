@@ -125,7 +125,7 @@ TableView {
                 width: 30
                 height: 76 * 4
                 Text {
-                    text: model.data
+                    text: modelData
                     rotation: 270
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignHCenter
