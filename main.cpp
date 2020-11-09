@@ -9,6 +9,7 @@
 #include <QSqlQuery>
 #include "treemodel.h"
 #include "readingmodel.h"
+#include "timetable.h"
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -30,6 +31,10 @@ int main(int argc, char *argv[])
 
     TreeModel model(&db);
     ReadingModel readingModel(&db);
+
+    TimeTable timeTable;
+    timeTable.setReadingModel(&readingModel);
+    timeTable.setTreeModel(&model);
 
     QQmlApplicationEngine engine;
     engine.addImportPath(":/qml");

@@ -29,6 +29,16 @@ TableView {
         implicitHeight: 76
         teacher: model.teacher
         lesson: model.lesson
+
+        MouseArea {
+            id: cellArea
+            anchors.fill: parent
+            z: 5
+            onClicked: {
+                tableModel.tableSwapChoosed(model.row, model.column)
+                console.log("Choosed ", model.row, model.column," in table")
+            }
+        }
     }
 
 

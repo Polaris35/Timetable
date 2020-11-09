@@ -56,6 +56,16 @@ Item{
                 delegate: Cell {
                     lesson: model.lesson
                     teacher: model.teacher
+
+                    MouseArea {
+                        id: cellArea
+                        anchors.fill: parent
+                        z: 5
+                        onClicked: {
+                            readingModel.lessonsSwapChoosed(model.row)
+                            console.log("Choosed ", model.row, " in readings")
+                        }
+                    }
                     Component.onCompleted: {
                         console.log("New delegate with = ", model.lesson, model.teacher)
                     }

@@ -90,6 +90,29 @@ QHash<int, QByteArray> TreeModel::roleNames() const
     return roles;
 }
 
+bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+    if(!index.isValid() || m_data.isEmpty()) {
+        return false;
+    }
+    Item item = m_data[index.column()].at( index.row() );
+
+    switch (role) {
+        case RoleNames::LessonRole:
+            item.lessonName = value.toString();
+        break;
+        case RoleNames::TeacherRole:
+            item.teacherName = value.toString();
+        break;
+    }
+
+    if(m_data[index.column()].setDataAt( index.row(), item)) {
+        emit dataChanged(index, index, QVector<int>() << role);
+        return true;
+    }
+
+    return false;
+}
 
 QVariant TreeModel::headerData(int section, Qt::Orientation orientation, int role) const
 {

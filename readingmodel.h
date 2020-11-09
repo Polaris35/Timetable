@@ -28,6 +28,9 @@ public:
     bool insertRows(int row, int count, const QModelIndex &parent) override;
 
     bool setData(const QModelIndex &index, const QVariant &value, int role) override;
+
+signals:
+    void lessonsSwapChoosed(int idx);
 private:
     ItemsList m_data;
     QSqlDatabase *m_db;
