@@ -25,7 +25,7 @@ private slots:
     void swapValues();
 
 signals:
-
+    void errorTeacherBusy();
 private:
     ReadingModel *m_readingModel;
     TreeModel *m_treeModel;

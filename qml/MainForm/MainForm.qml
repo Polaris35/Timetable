@@ -3,6 +3,7 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
 import QtQuick.Layouts 1.12
+import QtQuick.Dialogs 1.2
 import GlobalSettings 1.0
 import Cell 1.0
 import GroupSchedule 1.0
@@ -10,6 +11,31 @@ import GroupSchedule 1.0
 Item{
     id: root
     anchors.fill: parent
+    Dialog {
+        id: teacherErrorDialog
+        visible: false
+        standardButtons: StandardButton.Ok
+        title: "Помилка"
+        contentItem: Rectangle {
+            color: Material.backgroundColor
+            implicitWidth: 400
+            implicitHeight: 100
+            Label {
+                anchors.centerIn: parent
+                text: "Неможливо поставити пару - викладач зайнятий!"
+            }
+        }
+        onAccepted: {
+            teacherErrorDialog.visible = false
+        }
+
+        Connections {
+            target: timetable
+            function onErrorTeacherBusy() {
+                teacherErrorDialog.visible = true
+            }
+        }
+    }
 
     Rectangle{
         id:menu

@@ -66,6 +66,14 @@ void TimeTable::swapValues()
     item.lessonName = m_readingModel->data(m_readingModel->index(from),ReadingModel::RoleNames::LessonRole).toString();
     item.teacherName = m_readingModel->data(m_readingModel->index(from),ReadingModel::RoleNames::TeacherRole).toString();
 
+    for(int i = 0; i < m_treeModel->columnCount({}); ++i) {
+        QString teacherName = m_treeModel->data(m_treeModel->index(toX,i),TreeModel::RoleNames::TeacherRole).toString();
+        if(teacherName == item.teacherName) {
+            emit errorTeacherBusy();
+            return;
+        }
+    }
+
     m_treeModel->setData(m_treeModel->index(toX,toY), item.lessonName, TreeModel::RoleNames::LessonRole);
     m_treeModel->setData(m_treeModel->index(toX,toY), item.teacherName, TreeModel::RoleNames::TeacherRole);
     qDebug() << Q_FUNC_INFO << "Creating query";
