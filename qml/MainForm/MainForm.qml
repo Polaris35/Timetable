@@ -20,7 +20,7 @@ Item{
         color: Material.background
         ColumnLayout{
             spacing: 10
-//            anchors.horizontalCenter: menu.horizontalCenter
+            //            anchors.horizontalCenter: menu.horizontalCenter
             anchors.topMargin: 10
             anchors.fill: parent
             Label{
@@ -45,25 +45,54 @@ Item{
                 Layout.alignment: Qt.AlignHCenter
             }
             ListView{
+                id: readingView
                 Layout.alignment: Qt.AlignHCenter
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 clip: true
                 model:readingModel
-                                    flickableDirection: Flickable.AutoFlickIfNeeded
-                                    ScrollBar.horizontal: ScrollBar{}
-                                    ScrollBar.vertical: ScrollBar{}
+                flickableDirection: Flickable.AutoFlickIfNeeded
+                ScrollBar.horizontal: ScrollBar{}
+                ScrollBar.vertical: ScrollBar{}
+                highlightFollowsCurrentItem: false
+                highlight: delegateHighlight
+                spacing: 5
+                Component
+                {
+                    id: delegateHighlight
+                    Rectangle
+                    {
+                        id: highlightImpl
+                        width: 200
+                        height: 75
+                        color: "transparent"
+                        y: readingView.currentItem.y
+                        border.width: 5
+                        border.color: Material.color(Material.DeepOrange)
+                        z: 4
+                        Behavior on y
+                        {
+                            PropertyAnimation
+                            {
+                                //easing.type: Easing.bezierCurve
+                                duration: 250
+                            }
+                        }
+                    }
+                }
                 delegate: Cell {
                     lesson: model.lesson
                     teacher: model.teacher
-
+                    z: 3
                     MouseArea {
                         id: cellArea
                         anchors.fill: parent
                         z: 5
                         onClicked: {
+                            readingView.currentIndex = index
                             readingModel.lessonsSwapChoosed(model.row)
                             console.log("Choosed ", model.row, " in readings")
+
                         }
                     }
                     Component.onCompleted: {
@@ -71,8 +100,8 @@ Item{
                     }
                 }
 
-                                ScrollIndicator.horizontal: ScrollIndicator { }
-                                ScrollIndicator.vertical: ScrollIndicator { }
+                ScrollIndicator.horizontal: ScrollIndicator { }
+                ScrollIndicator.vertical: ScrollIndicator { }
             }
         }
 

@@ -83,36 +83,35 @@ void TimeTable::swapValues()
                                                         ") "
                   "LIMIT 1) "
                   "WHERE id IN( "
-                                "SELECT id "
-                                "FROM Timetable "
-                                         "INNER JOIN Pair P ON Timetable.id_pair = P.id "
-                                         "INNER JOIN Groups G ON Timetable.id_group = G.id "
-                                         "INNER JOIN Day D2 ON Timetable.id_day = D2.id "
+                                "SELECT T2.id "
+                                "FROM Timetable T2 "
+                                         "INNER JOIN Pair P ON T2.id_pair = P.id "
+                                         "INNER JOIN Groups G ON T2.id_group = G.id "
+                                         "INNER JOIN Day D2 ON T2.id_day = D2.id "
                                 "WHERE ( "
                                               "G.name = :groupName "
                                               "AND "
-                                              "D2.name = :day "
+                                              "D2.id = :day "
                                               "AND "
                                               "P.serial_number = :pairIdx "
                                           "))");
-qDebug() << Q_FUNC_INFO << "Binding values";
-QStringList days {"Понеділок", "Вівторок", "Середа", "Четверг", "Пятниця"};
-int pairIdx = toX;
-int dayIdx = 0;
-while(pairIdx > 3){
-    pairIdx -= 4;
-    ++dayIdx;
-}
+
+    int pairIdx = toX;
+    int dayIdx = 0;
+    while(pairIdx > 3){
+        pairIdx -= 4;
+        ++dayIdx;
+    }
+
 
     query.bindValue(":teacher", item.teacherName);
     query.bindValue(":lesson", item.lessonName);
-    query.bindValue(":pairIdx", pairIdx + 4);
+    query.bindValue(":pairIdx", pairIdx + 5);
     query.bindValue(":groupName", m_treeModel->headers().at(toY));
-    query.bindValue(":day", days.at(dayIdx));
+    query.bindValue(":day", dayIdx + 1);
 
-    qDebug() << Q_FUNC_INFO << "Executing...";
     if(!query.exec()) {
-        qDebug() << Q_FUNC_INFO << query.lastError().text();
+        qDebug() << Q_FUNC_INFO << query.lastError().text() <<query.lastQuery() << query.boundValues();
     }
     query.finish();
 
