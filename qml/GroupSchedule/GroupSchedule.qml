@@ -131,18 +131,22 @@ TableView {
         z: 2
         Repeater {
             model: ["Понеділок", "Вівторок", "Середа", "Четверг", "Пятниця"]
-            Label {
+            Rectangle {
+                border.color: Material.accent
+                border.width: 1
+                color: Material.background
                 width: 30
                 height: 76 * 4
                 Text {
                     text: modelData
                     rotation: 270
-                    verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment: Text.AlignHCenter
+                    color: Material.accent
+                    //verticalAlignment: Text.AlignVCenter
+                    //                    horizontalAlignment: Text.AlignHCenter
+                    anchors.centerIn: parent
                 }
-                color: '#aaaaaa'
-                font.pixelSize: 12
-                background: Rectangle { color: "#333333" }
+                //                font.pixelSize: 12
+                //                background: Rectangle { color: "#333333" }
             }
         }
     }

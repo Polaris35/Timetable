@@ -5,7 +5,9 @@ import QtQuick.Controls.Material 2.12
 import QtQuick.Layouts 1.12
 import RegisterForm 1.0
 Item {
-    id:root    
+    id:root
+    signal loginSucsess()
+    signal register()
     ColumnLayout{
         spacing: 40
         anchors.centerIn: parent
@@ -30,16 +32,32 @@ Item {
             Layout.alignment: Qt.AlignHCenter
             onClicked: {
                 if(login.text == "")
+                {
                     login.placeholderTextColor = Material.color(Material.Red);
-                if(pass.text == "")
+                    return;
+                }
+                if(pass.text == ""){
                     pass.placeholderTextColor = Material.color(Material.Red);
+                    return;
+                }
+                users.login(login.text,pass.text)
+            }
+            Connections {
+                target: users
+                onAuthSuccsess:{
+                    loginSucsess()
+                }
+                onAuthFailure:{
+                    login.placeholderTextColor = Material.color(Material.Red);
+                    pass.placeholderTextColor = Material.color(Material.Red);
+                }
             }
         }
         Button{
             text: "Registration"
             Layout.alignment: Qt.AlignHCenter
             onClicked: {
-
+                   register()
             }
         }
     }

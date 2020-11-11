@@ -29,9 +29,13 @@ Item{
             teacherErrorDialog.visible = false
         }
 
+
+
         Connections {
-            target: timeTable
-            function onErrorTeacherBusy() {
+            Component.onCompleted: console.log("dialog Created!")
+            target: tableModel
+            onErrorTeacherBusy: {
+                console.log("Dialog is opened")
                 teacherErrorDialog.visible = true
             }
         }
@@ -57,18 +61,16 @@ Item{
             }
 
             TextField{
-                id: login
+                id: lesson
                 Layout.alignment: Qt.AlignHCenter
                 placeholderText: "Lesson"
-            }
-            TextField{
-                id: pass
-                Layout.alignment: Qt.AlignHCenter
-                placeholderText: "Teacher"
-            }
+            }            
             Button{
                 text: "search"
                 Layout.alignment: Qt.AlignHCenter
+                onClicked: {
+                    readingModel.setFilterFixedString(lesson.text)
+                }
             }
             ListView{
                 id: readingView

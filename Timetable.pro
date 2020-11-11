@@ -19,8 +19,10 @@ SOURCES += \
         itemslist.cpp \
         main.cpp \
     readingmodel.cpp \
+    readingproxymodel.cpp \
     timetable.cpp \
         treemodel.cpp \
+    users.cpp
 
 RESOURCES += \
     qml.qrc
@@ -45,7 +47,9 @@ DISTFILES += \
 HEADERS += \
     itemslist.h \
     readingmodel.h \
+    readingproxymodel.h \
     timetable.h \
     treemodel.h \
+    users.h
 
 

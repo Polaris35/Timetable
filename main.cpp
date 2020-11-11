@@ -7,9 +7,12 @@
 #include <QQmlContext>
 #include <QtSql/QSqlDatabase>
 #include <QSqlQuery>
+#include<QSortFilterProxyModel>
 #include "treemodel.h"
 #include "readingmodel.h"
 #include "timetable.h"
+#include "readingproxymodel.h"
+#include "users.h"
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -32,18 +35,28 @@ int main(int argc, char *argv[])
     TreeModel model(&db);
     ReadingModel readingModel(&db);
 
+    ReadingProxyModel readingProxyModel;
+    Users user(&db);
+
+    readingProxyModel.setSourceModel(&readingModel);
+    readingProxyModel.setFilterRole(ReadingModel::LessonRole);
+
+
     TimeTable timeTable;
     timeTable.setReadingModel(&readingModel);
     timeTable.setTreeModel(&model);
     timeTable.setDb(&db);
+
+    QObject::connect(&readingProxyModel,&ReadingProxyModel::lessonsSwapChoosed,&timeTable,&TimeTable::lessonsSwapChoosed);
 
     QQmlApplicationEngine engine;
     engine.addImportPath(":/qml");
     const QUrl url(QStringLiteral("qrc:/main.qml"));
 
     engine.rootContext()->setContextProperty("tableModel", &model);
-    engine.rootContext()->setContextProperty("readingModel", &readingModel);
+    engine.rootContext()->setContextProperty("readingModel", &readingProxyModel);
     engine.rootContext()->setContextProperty("timeTable", &timeTable);
+    engine.rootContext()->setContextProperty("users", &user);
 
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {

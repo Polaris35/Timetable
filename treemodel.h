@@ -31,6 +31,8 @@ public:
 
 signals:
     void tableSwapChoosed(int row, int column);
+signals:
+    void errorTeacherBusy();
 private:
     QSqlDatabase *m_db;
     QStringList m_headers;

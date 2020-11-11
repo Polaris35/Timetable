@@ -19,13 +19,13 @@ public:
     void setDb(QSqlDatabase *db);
 
 private slots:
-    void lessonsSwapChoosed(int idx);
+
     void tableSwapChoosed(int row, int col);
 
     void swapValues();
+public slots:
+    void lessonsSwapChoosed(int idx);
 
-signals:
-    void errorTeacherBusy();
 private:
     ReadingModel *m_readingModel;
     TreeModel *m_treeModel;

@@ -70,7 +70,7 @@ void TimeTable::swapValues()
         QString teacherName = m_treeModel->data(m_treeModel->index(toX,i),TreeModel::RoleNames::TeacherRole).toString();
         if(teacherName == item.teacherName && i != toY) {
             qDebug() << Q_FUNC_INFO << "Emmiting signal!";
-            emit errorTeacherBusy();
+            emit m_treeModel->errorTeacherBusy();
             return;
         }
     }

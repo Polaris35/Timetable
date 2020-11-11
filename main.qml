@@ -13,17 +13,50 @@ import GridSchedule 1.0
 
 ApplicationWindow {
     visible: true
-    width: 1640
-    height: 880
+    width: 1260
+    height: 760
     color: '#222222'
     Material.theme: Material.Dark
     Material.accent: "White"
-        MainForm{
-            anchors.fill: parent
+
+    StackView{
+        id:stackView
+        anchors.fill: parent
+        initialItem: loginForm
+        Component{
+            id: mainForm
+            MainForm{
+                anchors.fill: parent
+            }
         }
 
-//    GroupSchedule{
-//        id: grid
-//    }
+        Component{
+            id: loginForm
+            LoginForm{
+
+                onLoginSucsess: {
+                    if(stackView.depth > 1)
+                        stackView.pop()
+                    stackView.push(mainForm)
+                }
+                onRegister: {
+                    stackView.push(register1)
+                }
+            }
+        }
+        Component{
+            id: register1
+            RegisterForm{
+
+                onBack: {
+                    stackView.pop()
+                }
+
+            }
+        }
+    }
+
+
+
 
 }

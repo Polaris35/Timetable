@@ -1,0 +1,2 @@
+#include "readingproxymodel.h"
+

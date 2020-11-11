@@ -7,6 +7,7 @@ import QtQuick.Dialogs 1.1
 
 Item{
     id: root
+    signal back()
     anchors.fill: parent
     ColumnLayout{
         spacing: 40
@@ -36,18 +37,45 @@ Item{
             text: "submit"
             Layout.alignment: Qt.AlignHCenter
             onClicked: {
-                if(login.text == "")
+
+                if(login.text == ""){
                     login.placeholderTextColor = Material.color(Material.Red);
+                    return;
+                }
+
                 if(pass.text == ""){
                     pass.placeholderTextColor = Material.color(Material.Red);
-//                    return;
+                    return;
                 }
                 if(pass_confirm.text == ""){
                     pass_confirm.placeholderTextColor = Material.color(Material.Red);
-//                    return;
+                    return;
                 }
-//                if(pass.text != pass_confirm.text)
-
+                if(pass.text != pass_confirm.text)
+                {
+                    pass_confirm.placeholderTextColor = Material.color(Material.Red);
+                    pass.placeholderTextColor = Material.color(Material.Red);
+                    users.registerFailure()
+                    return;
+                }
+                users.registration(login.text, pass.text);
+            }
+            Connections {
+                target: users
+                onRegisterSuccess:{
+                    back()
+                }
+                onRegisterFailure:{
+                    login.placeholderTextColor = Material.color(Material.Red);
+                    pass.placeholderTextColor = Material.color(Material.Red);
+                }
+            }
+        }
+        Button{
+            text: "back"
+            Layout.alignment: Qt.AlignHCenter
+            onClicked: {
+                back()
             }
         }
 
