@@ -115,7 +115,7 @@ void TimeTable::swapValues()
 
     query.bindValue(":teacher", item.teacherName);
     query.bindValue(":lesson", item.lessonName);
-    query.bindValue(":pairIdx", pairIdx + 5);
+    query.bindValue(":pairIdx", pairIdx + 4);
     query.bindValue(":groupName", m_treeModel->headers().at(toY));
     query.bindValue(":day", dayIdx + 1);
 
