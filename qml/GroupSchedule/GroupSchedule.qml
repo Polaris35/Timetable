@@ -29,6 +29,16 @@ TableView {
         implicitHeight: 76
         teacher: model.teacher
         lesson: model.lesson
+
+        MouseArea {
+            id: cellArea
+            anchors.fill: parent
+            z: 5
+            onClicked: {
+                tableModel.tableSwapChoosed(model.row, model.column)
+                console.log("Choosed ", model.row, model.column," in table")
+            }
+        }
     }
 
 
@@ -61,7 +71,7 @@ TableView {
                             Text {
                                 anchors.fill:parent
                                 id: groupName
-                                text: tableModel.headerData(0, Qt.Horizontal)
+                                text: tableModel.headerData(modelData, Qt.Horizontal)
                                 verticalAlignment: Text.AlignVCenter
                                 horizontalAlignment: TextEdit.AlignHCenter
                                 color: Material.accent
@@ -125,7 +135,7 @@ TableView {
                 width: 30
                 height: 76 * 4
                 Text {
-                    text: model.data
+                    text: modelData
                     rotation: 270
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignHCenter

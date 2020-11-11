@@ -19,6 +19,7 @@ SOURCES += \
         itemslist.cpp \
         main.cpp \
     readingmodel.cpp \
+    timetable.cpp \
         treemodel.cpp \
 
 RESOURCES += \
@@ -44,6 +45,7 @@ DISTFILES += \
 HEADERS += \
     itemslist.h \
     readingmodel.h \
+    timetable.h \
     treemodel.h \
 
 
