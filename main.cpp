@@ -40,9 +40,11 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     engine.addImportPath(":/qml");
     const QUrl url(QStringLiteral("qrc:/main.qml"));
+
     engine.rootContext()->setContextProperty("tableModel", &model);
     engine.rootContext()->setContextProperty("readingModel", &readingModel);
     engine.rootContext()->setContextProperty("timeTable", &timeTable);
+
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
         if (!obj && url == objUrl)

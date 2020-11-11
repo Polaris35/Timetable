@@ -71,7 +71,7 @@ TableView {
                             Text {
                                 anchors.fill:parent
                                 id: groupName
-                                text: tableModel.headerData(0, Qt.Horizontal)
+                                text: tableModel.headerData(modelData, Qt.Horizontal)
                                 verticalAlignment: Text.AlignVCenter
                                 horizontalAlignment: TextEdit.AlignHCenter
                                 color: Material.accent

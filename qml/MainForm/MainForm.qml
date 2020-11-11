@@ -30,7 +30,7 @@ Item{
         }
 
         Connections {
-            target: timetable
+            target: timeTable
             function onErrorTeacherBusy() {
                 teacherErrorDialog.visible = true
             }

@@ -5,7 +5,7 @@ TreeModel::TreeModel(QSqlDatabase* db, QObject *parent) :
 {
     QSqlQuery query(*m_db);
     QSqlQuery queryGroup(*m_db);
-    if(!queryGroup.exec("SELECT * FROM Groups"))
+    if(!queryGroup.exec("SELECT G.id, G.name FROM Groups G"))
     {
         qDebug() << queryGroup.lastQuery();
     }
@@ -14,6 +14,7 @@ TreeModel::TreeModel(QSqlDatabase* db, QObject *parent) :
         ItemsList list;
         int id = queryGroup.value(0).toInt();
         m_headers << queryGroup.value(1).toString();
+        qDebug() << queryGroup.value(1).toString();
         query.prepare("SELECT Teacher.PIB, Discipline.name FROM Timetable "
                       "INNER JOIN Day ON Day.id = Timetable.id_day "
                       "INNER JOIN Pair ON Pair.id = Timetable.id_pair "
@@ -98,11 +99,11 @@ bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int rol
     Item item = m_data[index.column()].at( index.row() );
 
     switch (role) {
-        case RoleNames::LessonRole:
-            item.lessonName = value.toString();
+    case RoleNames::LessonRole:
+        item.lessonName = value.toString();
         break;
-        case RoleNames::TeacherRole:
-            item.teacherName = value.toString();
+    case RoleNames::TeacherRole:
+        item.teacherName = value.toString();
         break;
     }
 
@@ -119,13 +120,14 @@ QVariant TreeModel::headerData(int section, Qt::Orientation orientation, int rol
     if(role != Qt::DisplayRole)
         return QVariant();
 
-    if(orientation == Qt::Horizontal){
-        switch(section){
-        case 0:
-            return  m_headers[section];
-        default:
+    qDebug() << Q_FUNC_INFO << section;
+
+    if(orientation == Qt::Horizontal) {
+        if(section < 0 || section >= m_headers.size())
             return QVariant();
-        }
+        else
+            return m_headers[section];
+
     }
     else
     {
